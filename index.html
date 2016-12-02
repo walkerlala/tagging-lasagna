@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>TagDemo</title>
+        <link rel="stylesheet" href="css/_reset.css">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="left">
+                <div class="select-area">
+                    <label for="url">
+                        获取的网址为：
+                        <input id="url" type="text" readonly="readonly" value="undefined">
+                        <input type="button" id="next_one" value="Next">
+                    </label>
+                    <label for="tag">
+                        标签：
+                        <select name="tag" id="tag">
+                            <option value="tag1">新闻</option>
+                            <option value="tag2">小说</option>
+                            <option value="tag3">购物</option>
+                            <option value="tag4">医疗</option>
+                            <option value="tag5">视频</option>
+                            <option value="tag6">社交</option>
+                            <option value="tag7">游戏</option>
+                            <option value="tag8">旅游</option>
+                            <option value="tag9">服务</option>
+                            <option value="tag10">网络课程</option>
+                            <option value="tag11">音乐</option>
+                            <option value="tag12">软件下载</option>
+                        </select>
+                    </label>
+                    <input type="button" id="confirm" value="确定">
+                    <input type="button" id="submit" value="最终提交">
+
+                    <form action="setTag.php" method="post">
+                        <input type="hidden" id="result" name="result" >
+                    </form>
+                </div>
+                <div id="logger-area">
+                    <h3 class="title">日志区</h3>
+                </div>
+            </div>
+            <div id="right">
+                <iframe sandbox="allow-same-origin allow-forms allow-scripts" src="todo.html" frameborder="0"></iframe>
+            </div>
+        </div>
+        <script type="application/javascript" src="js/app.js"></script>
+    </body>
+</html>

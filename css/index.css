@@ -1,0 +1,89 @@
+#wrap{
+    width: 100%;
+    position: relative;
+    min-height: 100%;
+}
+.clear-fix{
+    *zoom:1;
+}
+.clear-fix:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#left{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 28%;
+    border-right: 5px solid blue;
+    padding:10px 0 0 0;
+    height: 100%;
+}
+
+#left input,#left select{
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    font-weight: 400;
+}
+#left label{
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+}
+#left .select-area{
+    height: 40%;
+    padding:0 0 30px 30px;
+    border-bottom: 3px solid gray;
+}
+#left #logger-area{
+    height: 57%;
+    padding: 0 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#left #logger-area p{
+    font-size: 14px;
+    color: #232323;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px dashed #232323;
+    line-height: 23px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+#left #logger-area p:hover{
+    text-decoration: underline;
+}
+#left #logger-area p:nth-of-type(2n){
+    background-color: darkgray;
+    color: white;
+}
+#left #logger-area .title{
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    border: none;
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+#right{
+    position: fixed;
+    right:0;
+    top:0;
+    height: 100%;
+    width: 70%;
+}
+#right iframe{
+    width: 100%;
+    height: 100%;
+}

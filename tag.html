@@ -1,0 +1,58 @@
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Tag</title>
+  <link rel="stylesheet" type="text/css" href="css/tag.css">
+  <script type="text/javascript" src="../jquery/src/jquery.js"></script>
+  <script type="text/javascript">
+  $(function(){
+  	$("#pagelist a").bind("click",function(){
+  		var hol = $(this).attr("rel");
+  		var data = "action=getpage&id="+hol;
+
+  		$.getJSON("setTag.php",data,function(json){
+  			$("#page_id").html(json.page_id);
+  			$("#page_url").html(json.page_url);
+  		});
+  	});
+  });
+  </script>
+
+</head>
+
+<body>
+  <h1>贴标签</h1>
+
+  <form action="setTag.php" method="post">
+  <ul id="pagelist">
+  	<li><a href="#" ref ="1">1</a></li>
+  	<li><a href="#" ref ="2">2</a></li>
+  	<li><a href="#" ref ="3">3</a></li>
+  	<li><a href="#" ref ="4">4</a></li>
+  	<li><a href="#" ref ="5">5</a></li>
+  	<li><a href="#" ref ="6">6</a></li>
+  	<li><a href="#" ref ="7">7</a></li>
+  	<li><a href="#" ref ="8">8</a></li>
+  	<li><a href="#" ref ="9">9</a></li>
+  	<li><a href="#" ref ="10">10</a></li>
+  </ul>
+  <div id="info">
+  	<p>page_id: <span id ="page_id"></span></p>
+  	<p>page_url: <span id ="page_url"></span></p>
+  </div>
+  
+
+
+  <input name="page_id" type="text" size="40">
+  <input name="tag" type="text" size="40">
+
+  <tr>
+    <td><input type="button" onClick="clicke()" value="标签"/></td>
+    <td><input type="button"  value="Button2"/></td>
+    <td><input type="submit" name="submit" value="Tag"></td>
+  </tr>
+
+
+</body>
+</html>
