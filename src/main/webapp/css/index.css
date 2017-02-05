@@ -1,0 +1,146 @@
+body{
+    display: inline;
+	padding: 0px;
+	/*font-family: 'Source Sans Pro', sans-serif;*/
+	/*background-color: #e8f1f5;*/
+	font-size: 16px;	
+}
+
+
+.shadow{
+ 	box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);	
+}
+
+/*页首导航条样式*/
+.header{
+    /*border:1px solid #9750EF;*/
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    font-size: 18px;
+    z-index: 2;
+    background-color: white; 
+}
+
+.logo{
+    width:100%;
+    /*border:1px solid #E73939;*/
+    font-family: Segoe Script;
+    font-size: 30px;
+    text-align: center;
+    position: fixed;
+    margin: 10px 0px 0px 0px;
+    left: 0;
+    right: 0;
+    top: 5px;
+}
+
+#wrap{
+    border:1px solid #9750EF;
+    border-bottom: 1px solid #9750EF;
+    width: 100%;
+    height: 80%;
+    margin-bottom: 30px;
+    position: fixed;
+    top: 78px;
+    min-height: 100%;
+}
+.clear-fix{
+    *zoom:1;
+}
+.clear-fix:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#left{
+    position: fixed;
+    top: 78px;
+    left: 0;
+    width: 28%;
+    height: 80%;
+    border-right: 5px solid blue;
+    padding:10px 0 0 0;
+}
+
+#left input,#left select{
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    font-weight: 400;
+}
+#left label{
+    margin-bottom: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+}
+#left .select-area{
+    height: 40%;
+    padding:0 0 60px 30px;
+    border-bottom: 3px solid gray;
+}
+#left #logger-area{
+    position: bottom;
+    display: relative;
+    height: 47%;
+    padding: 0 5px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+#left #logger-area p{
+    font-size: 14px;
+    color: #232323;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /*border-bottom: 1px dashed #232323;*/
+    line-height: 23px;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+#left #logger-area p:hover{
+    text-decoration: underline;
+}
+#left #logger-area p:nth-of-type(2n){
+    background-color: darkgray;
+    color: white;
+}
+#left #logger-area .title{
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    border: none;
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: default;
+}
+#right{
+    position: fixed;
+    top: 87px;
+    right:0;
+    height: 80%;
+    width: 70%;
+}
+#right iframe{
+    width: 100%;
+    height: 100%;
+}
+
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   text-align: center;
+   font-size: 10px;
+   /*height:20px; */
+   /*background:#6cf;*/
+}
+
