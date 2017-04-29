@@ -12,8 +12,8 @@ import java.net.URLDecoder;
 
 public class DataHandler extends HttpServlet {
     DBUtil db;
-    String dbName = "trainingdbtest";
-    String TableName = "pages_table_test2";
+    String dbName = "TEST_taggin";
+    String TableName = "pages_table";
     String LockColumn = "ad_NR";
     int RequestLimitNum = 15;
 
@@ -29,7 +29,8 @@ public class DataHandler extends HttpServlet {
         throws ServletException, IOException {
         try {
             this.db.connectDB(this.dbName);
-            String query = ("SELECT `page_id`, `page_url` FROM $tablename$  WHERE `tag` IS NULL AND $lockcolumn$ <> 1 LIMIT ?")
+            System.out.println("Doing random get");
+            String query = ("SELECT `page_id`, `page_url` FROM $tablename$  WHERE `tag` IS NULL AND $lockcolumn$ <> 1 order by RAND() LIMIT ?")
                 .replace("$tablename$", this.TableName)
                 .replace("$lockcolumn$", this.LockColumn);
             String breakLockQuery = ("SELECT `page_id`, `page_url` from $tablename$ WHERE `tag` IS NULL LIMIT ?")
@@ -62,8 +63,8 @@ public class DataHandler extends HttpServlet {
             //System.out.println("End output...");
             // ===== END Test
             out.write(model.toString());
+            this.db.commit();
             out.close();
-            this.db.closeDBConn();
         }catch(Exception e){
             e.printStackTrace();
             return;
@@ -75,16 +76,18 @@ public class DataHandler extends HttpServlet {
         try {
             this.db.connectDB(this.dbName);
             String jsonstr = request.getParameter("result");
-            String updateSql = ("UPDATE $tablename$ SET `tag` = ? where `page_id` = ?")
-                .replace("$tablename$", this.TableName);
+            //String updateSql = ("update $tablename$ as pt, (select domain_name from $tablename$ where page_id= ?) as a set pt.tag= '?' where pt.domain_name = a.domain_name")
+              //  .replace("$tablename$", this.TableName);
+            String updateSql = ("update pages_table as pt, (select domain_name from pages_table where page_id= ?) as a set pt.tag= ? where pt.domain_name = a.domain_name");
+            System.out.println("No quote");
+            System.out.println(jsonstr);
             JsonObject model = Json.createReader(new StringReader(jsonstr)).readObject();
             for(String id : model.keySet()) {
                 System.out.print("key: " + id + ", ");
                 String tag = model.getString(id);
                 System.out.println("value: " + tag);
-                db.insert(updateSql, tag, Integer.valueOf(id));
+                db.insert(updateSql, Integer.valueOf(id), tag);
             }
-            this.db.closeDBConn();
         }catch(Exception e){
             e.printStackTrace();
             return;
@@ -128,7 +131,7 @@ class DBUtil {
 
     public void connectDB(String dataBaseName) throws Exception {
         this.databaseName = dataBaseName;
-        this.url = this.urlBase + this.databaseName+"?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=round";
+        this.url = this.urlBase + this.databaseName+"?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=round&relaxAutoCommit=true";
         getConnection();
     }
 
@@ -192,6 +195,10 @@ class DBUtil {
         boolean updateResult= statement.executeUpdate() > 0 ? true : false;
         statement.close();
         return updateResult;
+    }
+
+    public void commit() throws Exception {
+        connection.commit();
     }
 
     public void closeDBConn() throws Exception {
